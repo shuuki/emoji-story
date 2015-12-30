@@ -1,10 +1,7 @@
-### EMOJI STORY
-a little game about creating the universe using only emoji
+# EMOJI STORY
 
----
-
-<<<<<<< HEAD
 ### GAMEPLAY
+
 Start only with some stuff, a swirl, and a spark. Then build the world one emoji at a time. Be careful, there is a chance for destruction.
 
 ---
@@ -16,7 +13,7 @@ Start only with some stuff, a swirl, and a spark. Then build the world one emoji
 
 ---
 
-## RESOURCES
+### RESOURCES
 
 There are three types of resources in the game:
 
@@ -32,7 +29,7 @@ There are three types of resources in the game:
 
 ---
 
-## CRAFTING
+### CRAFTING
 
 // base materials
 :wavy_dash: & :cyclone: & :boom: 
