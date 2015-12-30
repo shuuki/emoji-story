@@ -1,8 +1,8 @@
 # EMOJI STORY
 
-### GAMEPLAY
-
-Start only with some stuff, a swirl, and a spark. Then build the world one emoji at a time. Be careful, there is a chance for destruction.
+Start only with some stuff, a swirl, and a spark.  
+Then build the world one emoji at a time.  
+Be careful, there is a chance for destruction.
 
 ---
 
