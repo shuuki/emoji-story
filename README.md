@@ -1,7 +1,7 @@
 # EMOJI STORY
 
 Start only with some stuff, a swirl, and a spark.  
-Then build the world one emoji at a time.  
+Then craft the world one emoji at a time.  
 Be careful, there is a chance for destruction.
 
 ---
@@ -20,11 +20,12 @@ There are three types of resources in the game:
 1. base resources
   - gradually fill over time
   - a little weighted randomization
-2. craftable resources
-  - can be made from either base resources or crafted resources
+2. expendable resources
+  - can be made from either base resources or permanent resources
   - sometimes require certain unlimited resources be unlocked
-3. unlimited resources
+3. permanent resources
   - only need to be crafted once
+  	- but can be crafted many times
   - special resources that require greater investment
 
 
@@ -50,9 +51,14 @@ cycle through selection modes on click or touch
 
 ---
 
+## GAME RULES
+
+your objective is to create resources using resources that you have.
 
 
+## JS PSEUDO SCRATCH
 ```
+
 new resource
 
 resource is an object {
@@ -61,14 +67,13 @@ resource is an object {
 	size: number 0-n,
 	type: either "base", "permanent", "craftable"
 }
-```
-
 
 iterate over the piles of resources to make an index
 
 inside each pile of resources,
 
 how much is there?
+
 
 what kind is it?
 	base
@@ -79,10 +84,11 @@ what kind is it?
 			3. 5% chance for boom
 
 	permanent
-
+		unlocks once 
 	expendable
 
 what are its build requirements?
+
 
 
 
@@ -97,19 +103,20 @@ has it been built before?
 
 
 
+
 can it be built now?
+
 
 look at requirements
 	for each requirement
 		look at main index
 			if < required, stop looking, can't be built
 			if >= required, go to the next requirement and look again
-			if that's the end of the requirements, yes it can be built
+				if that's the end of the requirements, yes it can be built
 
-
-if it can be built
 
 is it marked?
+
 
 
 if it matches all requirements (in "look at requirements")
@@ -120,13 +127,35 @@ if it matches all requirements (in "look at requirements")
 
 
 
+```
+### CSS
+
+```
 
 // RENDER RULES
 
 
+resources may contain many items
+
+base type
+	starts at the top of page 
+	has a bar that starts at the top, grows vertically downward
+	convert 1*2 + "px" so 2px per amount of resource
+	add to style height
+
+goes on top, pushes down base until a point
+	elements fill up with buttons in whatever order
+
+	permanent on the right
+		text left
+
+	craftable on the left
+		text right
 
 
+buttons are inline, fixed height/width, reflow at will
 
+```
 
 
 ---
