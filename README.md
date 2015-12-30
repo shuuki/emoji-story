@@ -3,6 +3,7 @@ a little game about creating the universe using only emoji
 
 ---
 
+<<<<<<< HEAD
 ### GAMEPLAY
 Start only with some stuff, a swirl, and a spark. Then build the world one emoji at a time. Be careful, there is a chance for destruction.
 
