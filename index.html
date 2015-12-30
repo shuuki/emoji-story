@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>untitular</title>
+
+<style>
+
+button {
+	font-size: 1em;
+	font-family: serif;
+	background: black;
+	border: none;
+	color: white;
+	outline: none;
+}
+
+button:active {
+	background: gray;
+}
+
+</style>
+
+</head>
+<body onload="clock.start()">
+
+<div id="controls">
+	<button onclick="clock.start()">start</button>
+	<button onclick="clock.pause()">pause</button>
+	<button onclick="clock.stop()">stop</button>
+	<button onclick="clock.render('clear')">clear</button>
+</div>
+<h1 id="stopwatch">0</h1>
+<p id="log"></p>
+
+<script type="text/javascript">
+
+// a little html document
+
+var stopwatch = document.getElementById("stopwatch")
+var log = document.getElementById("log")
+
+// a little clock ticker
+
+var clock = {
+	interval: 1000,
+	ticks: 0,
+	events: [],
+	going: false,
+	increment: null
+}
+
+clock.start = function() {
+	if(clock.going != true) {
+		clock.move()
+	}
+}
+
+clock.move = function() {
+	clock.increment = setTimeout(clock.add, clock.interval)
+	clock.going = true
+}
+
+clock.add = function() {
+	clock.ticks ++
+	clock.render("add")
+	clock.move()
+}
+
+clock.pause = function() {
+	clearTimeout(clock.increment)
+	clock.going = false
+	clock.render("pause")
+}
+
+clock.stop = function() {
+	clearTimeout(clock.increment)
+	clock.ticks = 0
+	clock.going = false
+	clock.render("stop")
+}
+
+clock.render = function(state) {
+	if(state == "pause") {
+		clock.events.push("click")
+	}
+	if(state == "stop") {
+		clock.events.push("bzzt")
+	}
+	if(state == "add") {
+		clock.events.push(resource.chance())
+	}
+	if(state == "clear") {
+		clock.events = []
+		log.innerHTML = " "
+	} else {
+		log.innerHTML = clock.events.sort().join(" ") // add .sort() twixt events and join for some amusement
+	}
+
+	stopwatch.innerHTML = clock.ticks
+	// here's a thought in case you want to manipulate the clock events array to play with the number being displayed (keep in mind that this will increment for pause and stop events too): stopwatch.innerHTML = clock.events.length
+}
+
+// a little die roller 
+
+var roll = function(sides) {
+	var die
+	die = Math.ceil(Math.random() * sides)
+	return die
+}
+
+// thinking about resources
+
+var resource = {}
+
+resource.chance = function() {
+	var entropy = roll(20)
+	if (entropy <= 15) {
+		return "#"
+	} else if (entropy >= 16 && entropy <= 19) {
+		return "$"
+	} else if (entropy == 20) {
+		return "!"
+	}
+}
+
+
+
+</script>
+</body>
+</html>
