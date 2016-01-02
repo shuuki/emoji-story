@@ -9,10 +9,11 @@
 <style>
 
 body {
-  font-size: 24px;
+  font-size: 32px;
   color: #eee;
   font-family: sans-serif;
   line-height: 2;
+  -webkit-font-smoothing: antialiased;
 }
 .button2 {
   display: inline;
@@ -64,22 +65,23 @@ body {
 }
 
 .bar {
-  width: 4em;
+  width: 3em;
   display: inline-block;
   vertical-align: top;
   height: 0;
-  transition: 900ms;
+  max-height: 400px;
+  transition: 1000ms;
 }
 #wavy {
-  background: rgba(128, 128, 128, 0.15);
+  background: rgba(128, 128, 128, 0.3);
   color: #a6a5a9;
 }
 #cyclone {
-  background: rgba(24, 188, 255, 0.2);
+  background: rgba(24, 188, 255, 0.3);
   color: #42afe4;
 }
 #boom {
-  background: rgba(255, 67, 8, 0.2);
+  background: rgba(255, 67, 8, 0.3);
   color: #f04f15;
 }
 
@@ -87,6 +89,7 @@ body {
 .badge {
   font-size: 0.5em;
 }
+
 button {
   font-size: 0.5em;
   background: black;
@@ -105,14 +108,14 @@ button:active {
 <body onload="clock.start();"> <!-- convert();  -->
 
 
-<!--<div id="controls">
+<div id="controls">
     <button onclick="clock.start()">start</button>
     <button onclick="clock.pause()">pause</button>
     <button onclick="clock.stop()">stop</button>
-    <button onclick="clock.render('clear')">clear</button>
-</div>-->
+    <button id="stopwatch">0</button>
+</div>
 
-<h1 id="stopwatch"></h1>
+
 
 <p id="log"></p>
 
@@ -128,7 +131,7 @@ button:active {
 
 
     <div id="queue">
-    	<!--<button onclick="build.check()">Build</button>-->
+    	<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
     </div>
 
     <div id="base">    
@@ -169,15 +172,13 @@ button:active {
 
 // a little html document couldn't sleep one night
 
-//var stopwatch = document.getElementById("stopwatch")
-//var log = document.getElementById("log")
+var stopwatch = document.getElementById("stopwatch")
 
 // a little clock ticker
 
 var clock = {
-	interval: 500,
+	interval: 1000,
 	ticks: 0,
-	events: [],
 	going: false,
 	increment: null
 }
@@ -194,43 +195,36 @@ clock.move = function() {
 }
 
 clock.add = function() {
-	clock.ticks++
 	clock.render("add")
+	clock.ticks++
 	clock.move()
 }
 
 clock.pause = function() {
 	clearTimeout(clock.increment)
 	clock.going = false
-	clock.render("pause")
+	clock.render()
 }
 
 clock.stop = function() {
 	clearTimeout(clock.increment)
 	clock.ticks = 0
 	clock.going = false
-	clock.render("stop")
+	clock.render()
 }
 
 clock.render = function(state) {
-	if (state == "pause") {
-		clock.events = "click"
-	}
-	if (state == "stop") {
-		clock.events = "bzzt"
-	}
 	if (state == "add") {
 		resource.chance()
 	}
-	if (state == "clear") {
-		clock.events = []
-		//log.innerHTML = " "
-	} else {
-		//log.innerHTML = clock.events
-	}
 
-	//stopwatch.innerHTML = clock.ticks
+	stopwatch.innerHTML = clock.ticks
 }
+
+
+
+
+
 
 // a little die roller 
 
@@ -243,29 +237,27 @@ var roll = function(sides) {
 
 
 
+
+
+
 // thinking about resources
 
 var resource = {}
-
 
 resource.chance = function() {
 	var entropy = roll(20)
 	if (entropy <= 12) {
 		wavy.count ++
-		wavy.chart()
+		wavy.render()
 	} else if (entropy >= 13 && entropy <= 18) {
 		cyclone.count ++
-		cyclone.chart()
+		cyclone.render()
 	} else if (entropy >= 19) {
 		boom.count ++
-		boom.chart()
+		boom.render()
 	}
 
 }
-
-
-
-
 
 
 /*
@@ -274,35 +266,52 @@ string should correspond to name of emoji
 */
 
 
-var material = function(name, count) {
+var material = function(name, type) {
 	this.name = name
-	this.count = count
-	this.display = ":" + name + ":"
-	
+	this.shortcode = ":" + name + ":"
+	this.count = 0
+	this.type = type
+	this.dom = "<div id=\"" + this.name + "\" class=\"" + this.type + "\">" + this.shortcode + "<div class=\"badge\"></div></div>"
 }
 
-material.prototype.chart = function() { 
+material.prototype.render = function() { 
 	this.element = document.getElementById(this.name)
-	this.element.style.height = this.count * 2 + "px"
 	this.element.querySelector(".badge").innerHTML = this.count
+	if(this.type == "base") { this.element.style.height = this.count * 2 + "px" }
 }
 
 
-var wavy = new material("wavy", 0)
-var cyclone = new material("cyclone", 0)
-var boom = new material("boom", 0)
+
+var wavy = new material("wavy", "base")
+var cyclone = new material("cyclone", "base")
+var boom = new material("boom", "base")
+
+var snowflake = new material("snowflake", "consumable")
+var zap = new material("zap", "consumable")
+var fire = new material("fire", "consumable")
+var sweat_drops = new material("sweat_drops", "consumable")
+var dash = new material("dash", "consumable")
+var snowman = new material("snowman", "consumable")
 
 
 
 
 
+var sunny = new material("sunny", "consumable")
+var comet = new material("comet", "consumable")
+var new_moon_with_face = new material("new_moon_with_face", "consumable")
 
-/*var bars = {}
+var sunrise = new material("sunrise", "permanent")
+var volcano = new material("volcano", "consumable")
+var milky_way = new material("milky_way", "permanent")
 
-bars.wavy  = document.getElementById("wavy").innerHTML;
-bars.cyclone = document.getElementById("cyclone").innerHTML;
-bars.boom = document.getElementById("boom").innerHTML;
-*/
+var earth_africa = new material("earth_africa", "consumable")
+var island = new material("island", "consumable")
+var mountain = new material("mountain", "consumable")
+var sunrise_over_mountains = new material("sunrise_over_mountains", "permanent")
+var mountain_snow = new material("mountain_snow", "consumable")
+var snowman2 = new material("snowman2", "consumable")
+
 
 
 
@@ -330,9 +339,6 @@ if ! add to boom
 
 
 /*
-
-
-base, tools, unlocks
 
 
 
