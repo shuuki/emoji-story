@@ -3,10 +3,31 @@
 <head>
 
 <meta charset="utf-8">
-
 <title>untitular</title>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -->
 <style>
+
+
 
 body {
   font-size: 32px;
@@ -14,7 +35,16 @@ body {
   font-family: sans-serif;
   line-height: 2;
   -webkit-font-smoothing: antialiased;
+  margin: 1em 0 1em 0;
 }
+
+p {
+	margin: 0;
+	line-height: 1;
+	letter-spacing: 1em;
+}
+
+
 .button2 {
   display: inline;
   border: 2px dashed magenta;
@@ -34,27 +64,19 @@ body {
 .button2.clear {
   border: 2px solid transparent;
 }
-.button-selected {
-  display: inline;
-  border: 2px dashed magenta;
+
+
+#queue {
+	background: rgba(0,0,0,0.1);
 }
-.button {
-  background: transparent;
-  border: none;
-  font-size: 1em;
-  text-align: center;
-  box-sizing: border-box;
-  position: relative;
-  outline: none;
-  border: 0.25em solid transparent;
-  padding: 0.5em;
+
+#controls {
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
-.button:active {
-  background: rgba(255, 255, 255, 0.9);
-}
-.button.selected {
-  border: 0.25em solid rgba(0, 0, 0, 0.2);
-}
+
 #layout {
   text-align: center;
   position: relative;
@@ -64,14 +86,51 @@ body {
   z-index: -1;
 }
 
-.bar {
-  width: 3em;
-  display: inline-block;
-  vertical-align: top;
-  height: 0;
-  max-height: 400px;
-  transition: 1000ms;
+
+
+
+
+
+.button {
+	background: transparent;
+	font-size: 1em;
+	text-align: center;
+	box-sizing: border-box;
+	position: relative;
+	outline: none;
+	border: 0.25em solid transparent;
+	padding: 0.5em;
 }
+.button:active {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+	border: 0.25em solid rgba(0, 0, 0, 0.2);
+}
+.button-selected {
+	display: inline;
+	border: 2px dashed magenta;
+}
+
+
+
+.badge {
+font-size: 0.5em;
+}
+
+.bar {
+width: 3em;
+display: inline-block;
+vertical-align: top;
+height: 0;
+max-height: 400px;
+transition: 500ms;
+}
+
+
+
+
 #wavy {
   background: rgba(128, 128, 128, 0.3);
   color: #a6a5a9;
@@ -86,9 +145,12 @@ body {
 }
 
 
-.badge {
-  font-size: 0.5em;
-}
+
+
+
+
+
+
 
 button {
   font-size: 0.5em;
@@ -102,17 +164,35 @@ button:active {
 }
 
 
+/*
+
+*/
+
+
+
+
+
 </style>
 
+<link rel="stylesheet" href="modules/emojione-master-2.0.0/assets/css/emojione.min.css" type="text/css" media="all">
+
+
 </head>
+
+
 <body onload="clock.start();"> <!-- convert();  -->
 
 
+
+
+
+
+
 <div id="controls">
-    <button onclick="clock.start()">start</button>
-    <button onclick="clock.pause()">pause</button>
-    <button onclick="clock.stop()">stop</button>
-    <button id="stopwatch">0</button>
+	<button onclick="clock.start()">start</button>
+	<button onclick="clock.pause()">pause</button>
+	<button onclick="clock.stop()">stop</button>
+	<button id="stopwatch">0</button>
 </div>
 
 
@@ -122,35 +202,50 @@ button:active {
 <div id="layout">
 
 
-    <div id="crafted" style="display: none;">
+    <div id="crafted" >
+    	<!--
+	    <p>🌍 🏝 ⛰ 🌄 🏔 ☃</p>
+	    <p>🌅 🌋 🌌</p>
+		<p>☀ ☄ 🌚</p>
+		<p>❄⚡🔥💦💨⛄</p>
+		-->
+		<p>❄⚡🔥💦💨</p>
+		<!--
         <div>:earth_africa: :island: :mountain: :sunrise_over_mountains: :mountain_snow: :snowman2:</div>
         <div>:sunrise: :volcano: :milky_way:</div>
         <div>:sunny: :comet: :new_moon_with_face:</div>
         <div>:snowflake: :zap: :fire: :sweat_drops: :dash: <div class="button2">:snowman:</div></div>
+        -->
     </div>
 
 
     <div id="queue">
+    	<span id="empty_queue">RECIPE</span>
+    	...
+    	<span id="build_list">MAKE</span>
     	<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
     </div>
 
     <div id="base">    
 
         <div id="wavy" class="bar">
-            <div class="button">〰
-                <div class="badge"></div>
-            </div>
+	        <div class="button">
+	        	〰
+				<div class="badge">-</div>
+			</div>
         </div>
 
         <div id="cyclone" class="bar">
-            <div class="button">🌀
-                <div class="badge"></div>
-            </div>
+        	<div class="button">
+        		🌀
+	        	<div class="badge">-</div>
+	        </div>
         </div>
 
         <div id="boom" class="bar">
-            <div class="button">💥 
-                <div class="badge"></div>
+            <div class="button">
+            	💥 
+				<div class="badge">-</div>
             </div>
         </div>
 
@@ -163,9 +258,21 @@ button:active {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="modules/emojione-master-2.0.0/lib/js/emojione.js"></script>
+
 <script type="text/javascript">
-
-
 
 
 
@@ -215,13 +322,11 @@ clock.stop = function() {
 
 clock.render = function(state) {
 	if (state == "add") {
-		resource.chance()
+		resource.entropy()
 	}
 
 	stopwatch.innerHTML = clock.ticks
 }
-
-
 
 
 
@@ -235,7 +340,13 @@ var roll = function(sides) {
 }
 
 
+// convert emoji shortcodes to images
 
+function convert() {
+	var input = document.getElementById('layout').innerHTML;
+	var buffer = emojione.shortnameToImage(input);
+	document.getElementById('layout').innerHTML = buffer;
+}
 
 
 
@@ -244,7 +355,7 @@ var roll = function(sides) {
 
 var resource = {}
 
-resource.chance = function() {
+resource.entropy = function() {
 	var entropy = roll(20)
 	if (entropy <= 12) {
 		wavy.count ++
@@ -256,11 +367,12 @@ resource.chance = function() {
 		boom.count ++
 		boom.render()
 	}
-
 }
 
 
 /*
+CRAFTING MATERIALS 
+
 takes a string and a number
 string should correspond to name of emoji
 */
@@ -271,7 +383,7 @@ var material = function(name, type) {
 	this.shortcode = ":" + name + ":"
 	this.count = 0
 	this.type = type
-	this.dom = "<div id=\"" + this.name + "\" class=\"" + this.type + "\">" + this.shortcode + "<div class=\"badge\"></div></div>"
+	this.dom = "<div id=\"" + this.name + "\" class=\"glyph " + this.type + "\">" + this.shortcode + "<div class=\"badge\"></div></div>"
 }
 
 material.prototype.render = function() { 
@@ -280,37 +392,50 @@ material.prototype.render = function() {
 	if(this.type == "base") { this.element.style.height = this.count * 2 + "px" }
 }
 
+/*
 
 
+*/
+
+// base
 var wavy = new material("wavy", "base")
 var cyclone = new material("cyclone", "base")
 var boom = new material("boom", "base")
 
-var snowflake = new material("snowflake", "consumable")
-var zap = new material("zap", "consumable")
-var fire = new material("fire", "consumable")
-var sweat_drops = new material("sweat_drops", "consumable")
-var dash = new material("dash", "consumable")
-var snowman = new material("snowman", "consumable")
+// first gen
+resource.snowflake = new material("snowflake", "consumable")
+resource.zap = new material("zap", "consumable")
+resource.fire = new material("fire", "consumable")
+resource.sweat_drops = new material("sweat_drops", "consumable")
+resource.dash = new material("dash", "consumable")
+resource.snowman = new material("snowman", "consumable")
+
+// second gen
+resource.unny = new material("sunny", "consumable")
+resource.comet = new material("comet", "consumable")
+resource.new_moon_with_face = new material("new_moon_with_face", "consumable")
+
+// third gen
+resource.sunrise = new material("sunrise", "permanent")
+resource.volcano = new material("volcano", "consumable")
+resource.milky_way = new material("milky_way", "permanent")
+
+// sunrise gen
+resource.earth_africa = new material("earth_africa", "consumable")
+resource.island = new material("island", "consumable")
+resource.mountain = new material("mountain", "consumable")
+resource.sunrise_over_mountains = new material("sunrise_over_mountains", "permanent")
+resource.mountain_snow = new material("mountain_snow", "consumable")
+resource.snowman2 = new material("snowman2", "consumable")
 
 
-
-
-
-var sunny = new material("sunny", "consumable")
-var comet = new material("comet", "consumable")
-var new_moon_with_face = new material("new_moon_with_face", "consumable")
-
-var sunrise = new material("sunrise", "permanent")
-var volcano = new material("volcano", "consumable")
-var milky_way = new material("milky_way", "permanent")
-
-var earth_africa = new material("earth_africa", "consumable")
-var island = new material("island", "consumable")
-var mountain = new material("mountain", "consumable")
-var sunrise_over_mountains = new material("sunrise_over_mountains", "permanent")
-var mountain_snow = new material("mountain_snow", "consumable")
-var snowman2 = new material("snowman2", "consumable")
+/*
+an old ascii stream of characters,
+roll 1d20 and see what you get.
+if # add to wavy
+if $ add to cyclone
+if ! add to boom
+*/
 
 
 
@@ -320,19 +445,18 @@ var snowman2 = new material("snowman2", "consumable")
 
 /*
 
-
-if # add to wavy
-if $ add to cyclone
-if ! add to boom
-
-
+CRAFTING RECIPIES
 
 */
 
 
+var queue = document.getElementById("queue")
 
 
+var crafted = document.getElementById("crafted")
 
+// turn this bit back on to populate the crafted list directly from the index
+// crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.sweat_drops.dom
 
 
 
@@ -447,12 +571,6 @@ resources may contain many items
 
 elements fill up with buttons in whatever order
 
-permanent on the right
-	text left
-
-craftable on the left
-	text right
-
 
 buttons are inline, fixed height/width, reflow at will
 
@@ -474,6 +592,20 @@ function convert2() {
 	document.getElementById('madness').innerHTML = buffer;
 }
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </body>
