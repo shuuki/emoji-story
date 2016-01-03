@@ -2,7 +2,6 @@
 <html>
 <head>
 
-
 <meta charset="utf-8">
 <title>EMOJI STORY</title>
 
@@ -34,9 +33,6 @@ p {
 
 
 
-
-
-
 #controls {
 	display: inline-block;
 	position: absolute;
@@ -56,19 +52,19 @@ button:active {
 }
 
 
-#log {}
 
 #layout {
-  text-align: center;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
+	text-align: center;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
 }
 
+#crafted {
 
-#crafted {}
+}
 
 #queue {
 	background: rgba(0,0,0,0.1);
@@ -76,45 +72,50 @@ button:active {
 
 
 
+.glyph {
+	display: inline-block;
+	line-height: 2;
+}
 
 
 .badge {
-font-size: 0.75em;
-font-weight: bold;
-line-height: 1;
+	font-size: 0.5em;
+	font-weight: bold;
+	line-height: 1;
 }
 
 .base {
-width: 3em;
-display: inline-block;
-vertical-align: top;
-height: 0;
-max-height: 400px;
-transition: 500ms;
+	width: 3em;
+	display: inline-block;
+	vertical-align: top;
+	height: 0;
+	max-height: 400px;
+	transition: 500ms;
+	overflow: visible;
+	margin: 0 0.25em;
 }
 
 
 
+/*
+SPECIAL BASE MATERIALS COLORS
+*/
 
 #wavy_dash {
-  background: rgba(128, 128, 128, 0.3);
-  color: #a6a5a9;
+	background: rgba(128, 128, 128, 0.3);
+	color: #a6a5a9;
 }
 #cyclone {
-  background: rgba(24, 188, 255, 0.3);
-  color: #42afe4;
+	background: rgba(24, 188, 255, 0.3);
+	color: #42afe4;
 }
 #boom {
-  background: rgba(255, 67, 8, 0.3);
-  color: #f04f15;
+	background: rgba(255, 67, 8, 0.3);
+	color: #f04f15;
 }
 
 
 
-.glyph {
-	display: inline-block;
-	line-height: 0;
-}
 
 
 
@@ -206,8 +207,10 @@ transition: 500ms;
     </div>
 
     <div id="queue">
-    	<span id="empty_queue">RECIPE</span>
+	    <span id="empty_queue">RECIPE</span>
+    	<!--
     	<span id="build_list">MAKE</span>
+    	-->
     	<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
     </div>
 
@@ -283,6 +286,10 @@ clock.render = function(state) {
 
 
 
+
+
+
+
 // a little die roller 
 
 var roll = function(sides) {
@@ -291,14 +298,6 @@ var roll = function(sides) {
 	return die
 }
 
-
-// convert emoji shortcodes to images
-
-function convert() {
-	var input = document.getElementById('layout').innerHTML;
-	var buffer = emojione.shortnameToImage(input);
-	document.getElementById('layout').innerHTML = buffer;
-}
 
 
 
@@ -351,6 +350,13 @@ material.prototype.build = function() {
 	}
 }
 
+// onclick add to build queue
+// toggle add/remove
+// when something is added or removed to the queue, check what can be built
+// if something can be built, look how to display it
+// if it has been built before, show its icon
+// if it hasn't been built, show new icon instead
+
 /*
 
 
@@ -375,7 +381,7 @@ resource.dash = new material("dash", "consumable")
 resource.snowman = new material("snowman", "consumable")
 
 // second gen
-resource.unny = new material("sunny", "consumable")
+resource.sunny = new material("sunny", "consumable")
 resource.comet = new material("comet", "consumable")
 resource.new_moon_with_face = new material("new_moon_with_face", "consumable")
 
@@ -414,6 +420,8 @@ CRAFTING RECIPIES
 */
 
 
+
+
 var crafted = document.getElementById("crafted")
 var queue = document.getElementById("queue")
 var base = document.getElementById("base")
@@ -423,6 +431,16 @@ crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.fire.do
 
 
 base.innerHTML = resource.wavy_dash.dom + resource.cyclone.dom + resource.boom.dom
+
+
+
+// convert emoji shortcodes to images
+
+function convert() {
+	var input = document.getElementById('layout').innerHTML;
+	var buffer = emojione.shortnameToImage(input);
+	document.getElementById('layout').innerHTML = buffer;
+}
 
 
 convert()
