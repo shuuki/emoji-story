@@ -11,7 +11,7 @@
   __| |_ _  _| |___ ___
  (_-<  _| || | / -_|_-<
  /__/\__|\_, |_\___/__/
-         |__/ -->
+		 |__/ -->
 
 <style>
 
@@ -170,11 +170,11 @@ SPECIAL BASE MATERIALS COLORS
 <link rel="stylesheet" href="modules/emojione/assets/css/emojione.min.css" type="text/css" media="all">
 </head>
 <!--
-                 _             
+				 _             
   _ __  __ _ _ _| |___  _ _ __ 
  | '  \/ _` | '_| / / || | '_ \
  |_|_|_\__,_|_| |_\_\\_,_| .__/
-                         |_|
+						 |_|
 
 -->
 <body onload="clock.start();"> <!-- convert();  -->
@@ -190,41 +190,41 @@ SPECIAL BASE MATERIALS COLORS
 
 <div id="layout">
 
-    <div id="crafted" >
-    	<!--
-	    <p>🌍 🏝 ⛰ 🌄 🏔 ☃</p>
-	    <p>🌅 🌋 🌌</p>
+	<div id="crafted" >
+		<!--
+		<p>🌍 🏝 ⛰ 🌄 🏔 ☃</p>
+		<p>🌅 🌋 🌌</p>
 		<p>☀ ☄ 🌚</p>
 		<p>❄⚡🔥💦💨⛄</p>
 		-->
 		<p>❄⚡🔥💦💨</p>〰🌀💥
 		<!--
-        <div>:earth_africa: :island: :mountain: :sunrise_over_mountains: :mountain_snow: :snowman2:</div>
-        <div>:sunrise: :volcano: :milky_way:</div>
-        <div>:sunny: :comet: :new_moon_with_face:</div>
-        <div>:snowflake: :zap: :fire: :sweat_drops: :dash: <div class="button2">:snowman:</div></div>
-        -->
-    </div>
+		<div>:earth_africa: :island: :mountain: :sunrise_over_mountains: :mountain_snow: :snowman2:</div>
+		<div>:sunrise: :volcano: :milky_way:</div>
+		<div>:sunny: :comet: :new_moon_with_face:</div>
+		<div>:snowflake: :zap: :fire: :sweat_drops: :dash: <div class="button2">:snowman:</div></div>
+		-->
+	</div>
 
-    <div id="queue">
-	    <span id="empty_queue">RECIPE</span>
-    	<!--
-    	<span id="build_list">MAKE</span>
-    	-->
-    	<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
-    </div>
+	<div id="queue">
+		?
+		<!--<span id="empty_queue">RECIPE</span>
+		
+		<span id="build_list">MAKE</span>
+		-->
+		<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
+	</div>
 
-    <div id="base">    	
-    </div>
+	<div id="base"></div>
 
 </div>
 
 <!--
-             _      _      
+			 _      _      
   ___ __ _ _(_)_ __| |_ ___
  (_-</ _| '_| | '_ \  _(_-<
  /__/\__|_| |_| .__/\__/__/
-              |_|
+			  |_|
 
 -->
 
@@ -232,9 +232,25 @@ SPECIAL BASE MATERIALS COLORS
 <script type="text/javascript">
 
 
-// a little html document couldn't sleep one night
+/*
 
+DOM ELEMENTS
+
+*/
+
+// a little html document couldn't sleep one night
 var stopwatch = document.getElementById("stopwatch")
+
+// main layout elements
+var crafted = document.getElementById("crafted")
+var queue = document.getElementById("queue")
+var base = document.getElementById("base")
+
+/*
+
+TIME
+
+*/
 
 // a little clock ticker
 
@@ -283,51 +299,14 @@ clock.render = function(state) {
 	stopwatch.innerHTML = clock.ticks
 }
 
-
-
-
-
-
-
-
-// a little die roller 
-
-var roll = function(sides) {
-	var die
-	die = Math.ceil(Math.random() * sides)
-	return die
-}
-
-
-
-
-
-// thinking about resources
-
-var resource = {}
-
-resource.entropy = function() {
-	var entropy = roll(20)
-	if (entropy <= 12) {
-		resource.wavy_dash.count ++
-		resource.wavy_dash.render()
-	} else if (entropy >= 13 && entropy <= 18) {
-		resource.cyclone.count ++
-		resource.cyclone.render()
-	} else if (entropy >= 19) {
-		resource.boom.count ++
-		resource.boom.render()
-	}
-}
-
-
 /*
+
 CRAFTING MATERIALS 
 
-takes a string and a number
-string should correspond to name of emoji
-*/
+takes a "string" and a "type" and cost {"type": number, etc}
+name string should correspond to name of emoji
 
+*/
 
 var material = function(name, type, cost) {
 	this.name = name
@@ -350,6 +329,12 @@ material.prototype.build = function() {
 	}
 }
 
+material.prototype.combine = function() {
+	queue.innerHTML += this.dom
+}
+
+
+
 // onclick add to build queue
 // toggle add/remove
 // when something is added or removed to the queue, check what can be built
@@ -359,13 +344,47 @@ material.prototype.build = function() {
 
 /*
 
+ENTROPY
+
+*/
+
+// a little die roller 
+
+var roll = function(sides) {
+	var die
+	die = Math.ceil(Math.random() * sides)
+	return die
+}
+
+// thinking about resources
+
+var resource = {}
+
+resource.entropy = function() {
+	var entropy = roll(20)
+	if (entropy <= 12) {
+		resource.wavy_dash.count ++
+		resource.wavy_dash.render()
+	} else if (entropy >= 13 && entropy <= 18) {
+		resource.cyclone.count ++
+		resource.cyclone.render()
+	} else if (entropy >= 19) {
+		resource.boom.count ++
+		resource.boom.render()
+	}
+}
+
+
+
+/*
+
+INGREDIENTS
 
 */
 
 //utilities
 resource.new = new material("new", "utility")
 resource.heavy_multiplication_x = new material("heavy_multiplication_x", "utility")
-
 
 // base
 resource.wavy_dash = new material("wavy_dash", "base")
@@ -422,15 +441,14 @@ CRAFTING RECIPIES
 
 
 
-var crafted = document.getElementById("crafted")
-var queue = document.getElementById("queue")
-var base = document.getElementById("base")
+
 
 // turn this bit back on to populate the crafted list directly from the index
 crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.fire.dom + resource.sweat_drops.dom + resource.dash.dom
 
 
 base.innerHTML = resource.wavy_dash.dom + resource.cyclone.dom + resource.boom.dom
+
 
 
 
