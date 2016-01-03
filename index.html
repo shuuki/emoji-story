@@ -2,40 +2,28 @@
 <html>
 <head>
 
+
 <meta charset="utf-8">
-<title>untitular</title>
+<title>EMOJI STORY</title>
 
 
 
+<!-- _        _        
+  __| |_ _  _| |___ ___
+ (_-<  _| || | / -_|_-<
+ /__/\__|\_, |_\___/__/
+         |__/ -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- -->
 <style>
 
-
-
 body {
-  font-size: 32px;
+  font-size: 28px;
   color: #eee;
   font-family: sans-serif;
   line-height: 2;
   -webkit-font-smoothing: antialiased;
   margin: 1em 0 1em 0;
+  -webkit-user-select: none;
 }
 
 p {
@@ -43,6 +31,117 @@ p {
 	line-height: 1;
 	letter-spacing: 1em;
 }
+
+
+
+
+
+
+#controls {
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+button {
+  font-size: 0.5em;
+  background: black;
+  border: none;
+  color: white;
+  outline: none;
+}
+button:active {
+  background: gray;
+}
+
+
+#log {}
+
+#layout {
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+
+#crafted {}
+
+#queue {
+	background: rgba(0,0,0,0.1);
+}
+
+
+
+
+
+.badge {
+font-size: 0.75em;
+font-weight: bold;
+line-height: 1;
+}
+
+.base {
+width: 3em;
+display: inline-block;
+vertical-align: top;
+height: 0;
+max-height: 400px;
+transition: 500ms;
+}
+
+
+
+
+#wavy_dash {
+  background: rgba(128, 128, 128, 0.3);
+  color: #a6a5a9;
+}
+#cyclone {
+  background: rgba(24, 188, 255, 0.3);
+  color: #42afe4;
+}
+#boom {
+  background: rgba(255, 67, 8, 0.3);
+  color: #f04f15;
+}
+
+
+
+.glyph {
+	display: inline-block;
+	line-height: 0;
+}
+
+
+
+
+/*
+.button {
+	background: transparent;
+	font-size: 1em;
+	text-align: center;
+	box-sizing: border-box;
+	position: relative;
+	outline: none;
+	border: 0.25em solid transparent;
+	padding: 0.25em;
+}
+.button:active {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+	border: 0.25em solid rgba(0, 0, 0, 0.2);
+}
+.button-selected {
+	display: inline;
+	border: 2px dashed magenta;
+}
+
 
 
 .button2 {
@@ -64,129 +163,20 @@ p {
 .button2.clear {
   border: 2px solid transparent;
 }
-
-
-#queue {
-	background: rgba(0,0,0,0.1);
-}
-
-#controls {
-	display: inline-block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
-
-#layout {
-  text-align: center;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-}
-
-
-
-
-
-
-.button {
-	background: transparent;
-	font-size: 1em;
-	text-align: center;
-	box-sizing: border-box;
-	position: relative;
-	outline: none;
-	border: 0.25em solid transparent;
-	padding: 0.5em;
-}
-.button:active {
-	background: rgba(0, 0, 0, 0.1);
-}
-
-.button:hover {
-	border: 0.25em solid rgba(0, 0, 0, 0.2);
-}
-.button-selected {
-	display: inline;
-	border: 2px dashed magenta;
-}
-
-
-
-.badge {
-font-size: 0.5em;
-}
-
-.bar {
-width: 3em;
-display: inline-block;
-vertical-align: top;
-height: 0;
-max-height: 400px;
-transition: 500ms;
-}
-
-
-
-
-#wavy {
-  background: rgba(128, 128, 128, 0.3);
-  color: #a6a5a9;
-}
-#cyclone {
-  background: rgba(24, 188, 255, 0.3);
-  color: #42afe4;
-}
-#boom {
-  background: rgba(255, 67, 8, 0.3);
-  color: #f04f15;
-}
-
-
-
-
-
-
-
-
-
-button {
-  font-size: 0.5em;
-  background: black;
-  border: none;
-  color: white;
-  outline: none;
-}
-button:active {
-  background: gray;
-}
-
-
-/*
-
 */
 
-
-
-
-
 </style>
-
-<link rel="stylesheet" href="modules/emojione-master-2.0.0/assets/css/emojione.min.css" type="text/css" media="all">
-
-
+<link rel="stylesheet" href="modules/emojione/assets/css/emojione.min.css" type="text/css" media="all">
 </head>
+<!--
+                 _             
+  _ __  __ _ _ _| |___  _ _ __ 
+ | '  \/ _` | '_| / / || | '_ \
+ |_|_|_\__,_|_| |_\_\\_,_| .__/
+                         |_|
 
-
+-->
 <body onload="clock.start();"> <!-- convert();  -->
-
-
-
-
-
-
 
 <div id="controls">
 	<button onclick="clock.start()">start</button>
@@ -195,12 +185,9 @@ button:active {
 	<button id="stopwatch">0</button>
 </div>
 
-
-
 <p id="log"></p>
 
 <div id="layout">
-
 
     <div id="crafted" >
     	<!--
@@ -209,7 +196,7 @@ button:active {
 		<p>☀ ☄ 🌚</p>
 		<p>❄⚡🔥💦💨⛄</p>
 		-->
-		<p>❄⚡🔥💦💨</p>
+		<p>❄⚡🔥💦💨</p>〰🌀💥
 		<!--
         <div>:earth_africa: :island: :mountain: :sunrise_over_mountains: :mountain_snow: :snowman2:</div>
         <div>:sunrise: :volcano: :milky_way:</div>
@@ -218,63 +205,28 @@ button:active {
         -->
     </div>
 
-
     <div id="queue">
     	<span id="empty_queue">RECIPE</span>
-    	...
     	<span id="build_list">MAKE</span>
     	<!-- add items here, then click something to check. or maybe it's always checking and you only get the option to build if it's available <button onclick="build.check()">Build</button>-->
     </div>
 
-    <div id="base">    
-
-        <div id="wavy" class="bar">
-	        <div class="button">
-	        	〰
-				<div class="badge">-</div>
-			</div>
-        </div>
-
-        <div id="cyclone" class="bar">
-        	<div class="button">
-        		🌀
-	        	<div class="badge">-</div>
-	        </div>
-        </div>
-
-        <div id="boom" class="bar">
-            <div class="button">
-            	💥 
-				<div class="badge">-</div>
-            </div>
-        </div>
-
+    <div id="base">    	
     </div>
+
 </div>
 
+<!--
+             _      _      
+  ___ __ _ _(_)_ __| |_ ___
+ (_-</ _| '_| | '_ \  _(_-<
+ /__/\__|_| |_| .__/\__/__/
+              |_|
 
+-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="modules/emojione-master-2.0.0/lib/js/emojione.js"></script>
-
+<script src="modules/emojione/lib/js/emojione.js"></script>
 <script type="text/javascript">
-
-
 
 
 // a little html document couldn't sleep one night
@@ -358,14 +310,14 @@ var resource = {}
 resource.entropy = function() {
 	var entropy = roll(20)
 	if (entropy <= 12) {
-		wavy.count ++
-		wavy.render()
+		resource.wavy_dash.count ++
+		resource.wavy_dash.render()
 	} else if (entropy >= 13 && entropy <= 18) {
-		cyclone.count ++
-		cyclone.render()
+		resource.cyclone.count ++
+		resource.cyclone.render()
 	} else if (entropy >= 19) {
-		boom.count ++
-		boom.render()
+		resource.boom.count ++
+		resource.boom.render()
 	}
 }
 
@@ -378,12 +330,13 @@ string should correspond to name of emoji
 */
 
 
-var material = function(name, type) {
+var material = function(name, type, cost) {
 	this.name = name
 	this.shortcode = ":" + name + ":"
 	this.count = 0
 	this.type = type
-	this.dom = "<div id=\"" + this.name + "\" class=\"glyph " + this.type + "\">" + this.shortcode + "<div class=\"badge\"></div></div>"
+	this.dom = "<div id=\"" + this.name + "\" class=\"glyph " + this.type + "\">" + this.shortcode + "<div class=\"badge\">"+ this.count +"</div></div>"
+	this.cost = cost
 }
 
 material.prototype.render = function() { 
@@ -392,18 +345,29 @@ material.prototype.render = function() {
 	if(this.type == "base") { this.element.style.height = this.count * 2 + "px" }
 }
 
+material.prototype.build = function() {
+	for (var prop in this.cost) {
+		console.log(prop)
+	}
+}
+
 /*
 
 
 */
 
+//utilities
+resource.new = new material("new", "utility")
+resource.heavy_multiplication_x = new material("heavy_multiplication_x", "utility")
+
+
 // base
-var wavy = new material("wavy", "base")
-var cyclone = new material("cyclone", "base")
-var boom = new material("boom", "base")
+resource.wavy_dash = new material("wavy_dash", "base")
+resource.cyclone = new material("cyclone", "base")
+resource.boom = new material("boom", "base")
 
 // first gen
-resource.snowflake = new material("snowflake", "consumable")
+resource.snowflake = new material("snowflake", "consumable", {"wavy_dash": 5, "cyclone": 1})
 resource.zap = new material("zap", "consumable")
 resource.fire = new material("fire", "consumable")
 resource.sweat_drops = new material("sweat_drops", "consumable")
@@ -450,13 +414,22 @@ CRAFTING RECIPIES
 */
 
 
-var queue = document.getElementById("queue")
-
-
 var crafted = document.getElementById("crafted")
+var queue = document.getElementById("queue")
+var base = document.getElementById("base")
 
 // turn this bit back on to populate the crafted list directly from the index
-// crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.sweat_drops.dom
+crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.fire.dom + resource.sweat_drops.dom + resource.dash.dom
+
+
+base.innerHTML = resource.wavy_dash.dom + resource.cyclone.dom + resource.boom.dom
+
+
+convert()
+
+
+
+
 
 
 
