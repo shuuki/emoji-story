@@ -239,12 +239,28 @@ DOM ELEMENTS
 */
 
 // a little html document couldn't sleep one night
+
 var stopwatch = document.getElementById("stopwatch")
 
 // main layout elements
+
 var crafted = document.getElementById("crafted")
 var queue = document.getElementById("queue")
 var base = document.getElementById("base")
+
+/*
+
+EMOJI ONE HELPERS
+
+*/
+
+// convert emoji shortcodes to images
+
+function convert() {
+	var input = document.getElementById('layout').innerHTML;
+	var buffer = emojione.shortnameToImage(input);
+	document.getElementById('layout').innerHTML = buffer;
+}
 
 /*
 
@@ -333,8 +349,6 @@ material.prototype.combine = function() {
 	queue.innerHTML += this.dom
 }
 
-
-
 // onclick add to build queue
 // toggle add/remove
 // when something is added or removed to the queue, check what can be built
@@ -349,17 +363,23 @@ ENTROPY
 */
 
 // a little die roller 
-
 var roll = function(sides) {
 	var die
 	die = Math.ceil(Math.random() * sides)
 	return die
 }
 
-// thinking about resources
 
+/*
+
+RESOURCES
+
+*/
+
+// make ready for a big resource library
 var resource = {}
 
+// some entropy for base resource generation
 resource.entropy = function() {
 	var entropy = roll(20)
 	if (entropy <= 12) {
@@ -374,15 +394,13 @@ resource.entropy = function() {
 	}
 }
 
-
-
 /*
 
 INGREDIENTS
 
 */
 
-//utilities
+//tools for crafting
 resource.new = new material("new", "utility")
 resource.heavy_multiplication_x = new material("heavy_multiplication_x", "utility")
 
@@ -391,25 +409,19 @@ resource.wavy_dash = new material("wavy_dash", "base")
 resource.cyclone = new material("cyclone", "base")
 resource.boom = new material("boom", "base")
 
-// first gen
-resource.snowflake = new material("snowflake", "consumable", {"wavy_dash": 5, "cyclone": 1})
-resource.zap = new material("zap", "consumable")
-resource.fire = new material("fire", "consumable")
-resource.sweat_drops = new material("sweat_drops", "consumable")
-resource.dash = new material("dash", "consumable")
-resource.snowman = new material("snowman", "consumable")
-
-// second gen
+// craftable
+resource.snowflake = new material("snowflake", "consumable", {"wavy_dash": 5, "cyclone": 1});
+resource.zap = new material("zap", "consumable", {"cyclone": 5, "boom": 1});
+resource.fire = new material("fire", "consumable", {"wavy_dash": 10, "boom": 2});
+resource.sweat_drops = new material("sweat_drops", "consumable", {"snowflake": 1, "zap": 1})
+resource.dash = new material("dash", "consumable", {"snowflake": 1, "zap": 1})
+resource.snowman = new material("snowman", "consumable", {"snowflake": 20, "cyclone": 5})
 resource.sunny = new material("sunny", "consumable")
 resource.comet = new material("comet", "consumable")
 resource.new_moon_with_face = new material("new_moon_with_face", "consumable")
-
-// third gen
 resource.sunrise = new material("sunrise", "permanent")
 resource.volcano = new material("volcano", "consumable")
 resource.milky_way = new material("milky_way", "permanent")
-
-// sunrise gen
 resource.earth_africa = new material("earth_africa", "consumable")
 resource.island = new material("island", "consumable")
 resource.mountain = new material("mountain", "consumable")
@@ -417,26 +429,15 @@ resource.sunrise_over_mountains = new material("sunrise_over_mountains", "perman
 resource.mountain_snow = new material("mountain_snow", "consumable")
 resource.snowman2 = new material("snowman2", "consumable")
 
-
-/*
-an old ascii stream of characters,
-roll 1d20 and see what you get.
-if # add to wavy
-if $ add to cyclone
-if ! add to boom
-*/
-
-
-
-
-
-
-
 /*
 
-CRAFTING RECIPIES
+MEDITATION ON COMPONENTS OF THE WORLD
+
+in the old ascii stream of characters, roll 1d20 and see what you get:
+if # add to wavy, if $ add to cyclone, if ! add to boom.
 
 */
+
 
 
 
@@ -448,17 +449,6 @@ crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.fire.do
 
 
 base.innerHTML = resource.wavy_dash.dom + resource.cyclone.dom + resource.boom.dom
-
-
-
-
-// convert emoji shortcodes to images
-
-function convert() {
-	var input = document.getElementById('layout').innerHTML;
-	var buffer = emojione.shortnameToImage(input);
-	document.getElementById('layout').innerHTML = buffer;
-}
 
 
 convert()
