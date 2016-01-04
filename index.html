@@ -194,7 +194,6 @@ SPECIAL BASE MATERIALS COLORS
 	<div id="crafted" ></div>
 
 	<div id="queue">
-		?
 		<!--
 		<span id="empty_queue">RECIPE</span>
 		<span id="build_list">MAKE</span>
@@ -236,11 +235,12 @@ var base = document.getElementById("base")
 
 /*
 
-EMOJI ONE HELPERS
+EMOJI HELPERS
 
 */
 
 // convert emoji shortcodes to images
+// more at http://emojione.com/
 
 function convert() {
 	var input = document.getElementById('layout').innerHTML;
@@ -317,6 +317,7 @@ var material = function(name, type, cost) {
 	this.type = type
 	this.dom = "<div id=\"" + this.name + "\" class=\"glyph " + this.type + "\">" + this.shortcode + "<div class=\"badge\">"+ this.count +"</div></div>"
 	this.cost = cost
+	this.built = false
 }
 
 material.prototype.render = function() { 
@@ -426,21 +427,22 @@ if # add to wavy, if $ add to cyclone, if ! add to boom.
 
 
 
+/*
 
+HACK THE PLANET / DOM MANIPULATION
 
-
+*/
 
 // turn this bit back on to populate the crafted list directly from the index
 crafted.innerHTML = resource.snowflake.dom + resource.zap.dom + resource.fire.dom + resource.sweat_drops.dom + resource.dash.dom
 
+queue.innerHTML = "?!"
 
+// stuff the base materials into that spot
 base.innerHTML = resource.wavy_dash.dom + resource.cyclone.dom + resource.boom.dom
 
-
+// convert all visible shortcodes
 convert()
-
-
-
 
 
 
@@ -449,19 +451,11 @@ convert()
 
 /*
 
-
-
-
+LOTS OF NOTES COPIED OVER FROM THE README
 
 ---
 
-## GAME RULES
-
-your objective is to create resources using resources that you have.
-
-
 ## JS PSEUDO SCRATCH
-```
 
 new resource
 
@@ -495,20 +489,14 @@ what are its build requirements?
 
 
 
-
-/*
 should it be displayed?
 	if yes, look at "RENDER RULES"
 	if no, see "can you be built now?"
 		if cannot be built, do not display
-*/
 
-/*
 has it been built before?  
-	if no, mark
-*/
+	if no, mark as built
 
-/*
 can it be built now?
 
 look at requirements
@@ -517,70 +505,16 @@ look at requirements
 			if < required, stop looking, can't be built
 			if >= required, go to the next requirement and look again
 				if that's the end of the requirements, yes it can be built
-*/
-
-/*
 is it marked?
 
-cycle through selection modes on click or touch  
-1. temporary selection
-2. permanent selection
-0. off
-*/
 
-/*
 if it matches all requirements (in "look at requirements")
 	and someone has toggled all the resources (see "is it marked?")
 		subtract the amount of resources required from each stack
 		add the given amount of new resource to its stack
 			and mark the new resource as having been built
+
 */
-
-/*
-```
-### CSS
-
-```
-// RENDER RULES
-
-area to show tools
-show an empty gray block if something new can be crafted
-	show at 50% opacity if it has been crafted before but you have none now
-	show at 100% opacity if it is currently available
-if more than one is available, show a little badge
-[ ?
-  ? ]
-
-
-resources may contain many items
-
-elements fill up with buttons in whatever order
-
-
-buttons are inline, fixed height/width, reflow at will
-
-
-```
-*/
-
-//from http://emojione.com/
-/*
-function convert() {
-	var input = document.getElementById('base').innerHTML;
-	var buffer = emojione.shortnameToImage(input);
-	document.getElementById('base').innerHTML = buffer;
-}
-
-function convert2() {
-	var input = document.getElementById('madness').innerHTML;
-	var buffer = emojione.shortnameToImage(input);
-	document.getElementById('madness').innerHTML = buffer;
-}
-*/
-
-
-
-
 
 
 
