@@ -13,6 +13,8 @@ Start only with some stuff, a swirl, and a spark. Then craft the world one emoji
 
 - Originally forked from my insomnia sessions simple clock ticker timer [untitular.html](https://gist.github.com/shuuki/8f5db01e786fecdbc904)
 
+- Inspired by [CandyBox](http://candybox2.net/) and [A Dark Room](http://adarkroom.doublespeakgames.com/)
+
 
 ---
 
