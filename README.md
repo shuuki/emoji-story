@@ -1,26 +1,25 @@
 # EMOJI STORY
 
-Start only with some stuff, a swirl, and a spark.  
-Then craft the world one emoji at a time.  
-Be careful, there is a chance for destruction.
+Start only with some stuff, a swirl, and a spark. Then craft the world one emoji at a time. Be careful, there is a chance for destruction.
 
 ---
 
-
-
-
-
 ### CREDITS
+
+- Inspired by the book of [Genesis](https://www.biblegateway.com/passage/?search=Genesis+1&version=GNV)
 
 - Built using the [Emoji One](http://emojione.com/) collection (more at [Emojipedia](http://emojipedia.org/emoji-one/))
   - Their [Guestbook](http://emojione.com/demo/#guestbook-header) is a great scratchpad for crafting recipes and figuring things out
 
 - Originally forked from my insomnia sessions simple clock ticker timer [untitular.html](https://gist.github.com/shuuki/8f5db01e786fecdbc904)
 
-- Inspired by the book of [Genesis](https://www.biblegateway.com/passage/?search=Genesis+1&version=GNV)
-
 
 ---
+
+## RULES
+
+Your objective is to create resources using the resources that you have.
+
 
 ### RESOURCES
 
@@ -57,12 +56,6 @@ cycle through selection modes on click or touch
 2. permanent selection
 0. off
 
-
----
-
-## GAME RULES
-
-your objective is to create resources using resources that you have.
 
 
 ## JS PSEUDO SCRATCH
